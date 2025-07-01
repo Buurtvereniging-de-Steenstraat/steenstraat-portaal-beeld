@@ -1,61 +1,35 @@
-
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User } from "lucide-react";
+import { ArrowLeft, Calendar, User, Mail, Phone, MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { newsItems } from "@/data/newsData";
 
 const News = () => {
-  const newsItems = [
-    {
-      id: 1,
-      title: "Buurtfeest 2024 was een groot succes!",
-      date: "15 december 2024",
-      author: "Bestuur Steenstraat",
-      excerpt: "Ons jaarlijkse buurtfeest heeft weer vele bewoners samen gebracht voor een gezellige dag vol activiteiten.",
-      content: "Het buurtfeest van dit jaar was een fantastisch succes met meer dan 200 bezoekers. Er waren activiteiten voor alle leeftijden, van spelletjes voor kinderen tot muziek en dans voor volwassenen."
-    },
-    {
-      id: 2,
-      title: "Nieuwe buurtschoonmaak gepland",
-      date: "8 december 2024",
-      author: "Milieucommissie",
-      excerpt: "Op zaterdag 21 december organiseren we een grote buurtschoonmaak. Alle bewoners zijn welkom om mee te helpen.",
-      content: "We komen samen om 9:00 bij het buurthuis. Handschoenen en materialen worden verstrekt. Na afloop is er koffie en taart voor alle vrijwilligers."
-    },
-    {
-      id: 3,
-      title: "Winteractiviteiten voor kinderen",
-      date: "1 december 2024",
-      author: "Jeugdcommissie",
-      excerpt: "Tijdens de kerstvakantie organiseren we leuke winteractiviteiten voor alle kinderen uit de buurt.",
-      content: "Van 27 december tot 30 december zijn er dagelijks activiteiten in het buurthuis. Denk aan knutselen, spelletjes en een speciale filmmiddag."
-    }
-  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-xl font-bold text-green-800">Buurtvereniging de Steenstraat</h1>
+              <img src="/logo.jpg" alt="Logo" className="h-24 w-24 mr-3 rounded-full border border-gray-200" />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link to="/" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Home
                 </Link>
-                <Link to="/news" className="text-green-700 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/news" className="text-orange-700 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Laatste nieuws
                 </Link>
-                <Link to="/gallery" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/gallery" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Fotogalerij
                 </Link>
-                <Link to="/calendar" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Agenda
+                <Link to="/calendar" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Buurtactiviteiten
                 </Link>
-                <Link to="/contact" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/contact" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Contact
                 </Link>
               </div>
@@ -100,6 +74,15 @@ const News = () => {
                 <CardDescription className="text-base">{item.excerpt}</CardDescription>
               </CardHeader>
               <CardContent>
+                {item.image && (
+                  <div className="mb-4">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full max-h-64 object-contain rounded-lg"
+                    />
+                  </div>
+                )}
                 <p className="text-gray-700">{item.content}</p>
               </CardContent>
             </Card>
@@ -114,11 +97,47 @@ const News = () => {
           <p className="text-gray-600 mb-6">
             Stuur ons je nieuws en we plaatsen het op onze website!
           </p>
-          <Button asChild className="bg-green-600 hover:bg-green-700">
+          <Button asChild className="bg-orange-600 hover:bg-orange-700">
             <Link to="/contact">Stuur nieuws</Link>
           </Button>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-orange-600 to-green-600 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Buurtvereniging de Steenstraat</h3>
+              <p className="text-orange-100">
+                Samen maken we onze buurt een fijne plek om te wonen.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Snel navigeren</h4>
+              <ul className="space-y-2">
+                <li><Link to="/" className="text-orange-100 hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/news" className="text-orange-100 hover:text-white transition-colors">Laatste nieuws</Link></li>
+                <li><Link to="/gallery" className="text-orange-100 hover:text-white transition-colors">Fotogalerij</Link></li>
+                <li><Link to="/calendar" className="text-orange-100 hover:text-white transition-colors">Agenda</Link></li>
+                <li><Link to="/contact" className="text-orange-100 hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <div className="space-y-2 text-orange-100">
+                <div className="flex items-center">
+                  <Mail className="h-4 w-4 mr-2" />
+                  <span>buurtverenigingdesteenstraat@outlook.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-orange-500 mt-8 pt-8 text-center text-orange-200">
+            <p>&copy; {new Date().getFullYear()} Buurtvereniging de Steenstraat. Alle rechten voorbehouden.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

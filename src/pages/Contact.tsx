@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Mail, Phone, MapPin, Send } from "lucide-react";
+import { ArrowLeft, Mail, Phone, MapPin, Send, Facebook } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,11 +28,26 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(`
+Naam: ${formData.name}
+Email: ${formData.email}
+Telefoon: ${formData.phone || 'Niet opgegeven'}
+
+Bericht:
+${formData.message}
+    `);
+    
+    const mailtoLink = `mailto:buurtverenigingdesteenstraat@outlook.com?subject=${subject}&body=${body}`;
+    
+    // Open default email client
+    window.open(mailtoLink);
     
     toast({
-      title: "Bericht verzonden!",
-      description: "Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.",
+      title: "Bericht voorbereid!",
+      description: "Uw email client wordt geopend. Verstuur het bericht om contact met ons op te nemen.",
     });
 
     // Reset form
@@ -47,26 +61,26 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-xl font-bold text-green-800">Buurtvereniging de Steenstraat</h1>
+              <img src="/logo.jpg" alt="Logo" className="h-24 w-24 mr-3 rounded-full border border-gray-200" />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link to="/" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Home
                 </Link>
-                <Link to="/gallery" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/gallery" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Fotogalerij
                 </Link>
-                <Link to="/calendar" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Agenda
+                <Link to="/calendar" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Buurtactiviteiten
                 </Link>
-                <Link to="/contact" className="text-green-700 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/contact" className="text-orange-700 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Contact
                 </Link>
               </div>
@@ -99,30 +113,27 @@ const Contact = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <Mail className="h-6 w-6 text-green-600 mt-1" />
+                  <Mail className="h-6 w-6 text-orange-600 mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">info@steenstraat.nl</p>
+                    <p className="text-gray-600">buurtverenigingdesteenstraat@outlook.com</p>
                     <p className="text-sm text-gray-500">We reageren binnen 24 uur</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <Phone className="h-6 w-6 text-green-600 mt-1" />
+                  <Facebook className="h-6 w-6 text-orange-600 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Telefoon</h3>
-                    <p className="text-gray-600">06-12345678</p>
-                    <p className="text-sm text-gray-500">Bereikbaar op werkdagen 18:00-20:00</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <MapPin className="h-6 w-6 text-green-600 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Adres</h3>
-                    <p className="text-gray-600">Buurthuis de Steenstraat</p>
-                    <p className="text-gray-600">Steenstraat 25</p>
-                    <p className="text-gray-600">1000 AA Amsterdam</p>
+                    <h3 className="font-semibold text-gray-900">Facebook</h3>
+                    <a 
+                      href="https://www.facebook.com/groups/396194063895407" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-orange-600 transition-colors"
+                    >
+                      Volg ons op Facebook
+                    </a>
+                    <p className="text-sm text-gray-500">Blijf op de hoogte van onze activiteiten</p>
                   </div>
                 </div>
               </CardContent>
@@ -134,16 +145,24 @@ const Contact = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-gray-900">Jan Jansen</h4>
+                  <h4 className="font-semibold text-gray-900">Stijn van de Ven</h4>
                   <p className="text-gray-600">Voorzitter</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Marie de Wit</h4>
+                  <h4 className="font-semibold text-gray-900">Edwina Treebush</h4>
                   <p className="text-gray-600">Secretaris</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Piet van Dam</h4>
+                  <h4 className="font-semibold text-gray-900">Ivo Beerens</h4>
                   <p className="text-gray-600">Penningmeester</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Nina Rommen</h4>
+                  <p className="text-gray-600">bestuursmedewerker</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Rik Bosvelt</h4>
+                  <p className="text-gray-600">bestuursmedewerker</p>
                 </div>
               </CardContent>
             </Card>
@@ -221,7 +240,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
+                <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700">
                   <Send className="h-4 w-4 mr-2" />
                   Verstuur bericht
                 </Button>
@@ -230,6 +249,53 @@ const Contact = () => {
           </Card>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-orange-600 to-green-600 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Buurtvereniging de Steenstraat</h3>
+              <p className="text-orange-100">
+                Samen maken we onze buurt een fijne plek om te wonen.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Snel navigeren</h4>
+              <ul className="space-y-2">
+                <li><Link to="/" className="text-orange-100 hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/news" className="text-orange-100 hover:text-white transition-colors">Laatste nieuws</Link></li>
+                <li><Link to="/gallery" className="text-orange-100 hover:text-white transition-colors">Fotogalerij</Link></li>
+                <li><Link to="/calendar" className="text-orange-100 hover:text-white transition-colors">Agenda</Link></li>
+                <li><Link to="/contact" className="text-orange-100 hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <div className="space-y-2 text-orange-100">
+                <div className="flex items-center">
+                  <Mail className="h-4 w-4 mr-2" />
+                  <span>buurtverenigingdesteenstraat@outlook.com</span>
+                </div>
+                <div className="flex items-center">
+                  <Facebook className="h-4 w-4 mr-2" />
+                  <a 
+                    href="https://www.facebook.com/groups/396194063895407" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    Volg ons op Facebook
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-orange-500 mt-8 pt-8 text-center text-orange-200">
+            <p>&copy; {new Date().getFullYear()} Buurtvereniging de Steenstraat. Alle rechten voorbehouden.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
