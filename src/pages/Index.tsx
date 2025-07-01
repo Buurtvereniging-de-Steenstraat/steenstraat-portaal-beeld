@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Calendar, Users, Camera, Mail, MapPin, Phone } from "lucide-react";
+import { Calendar, Users, Camera, Mail, MapPin, Phone, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -18,6 +18,9 @@ const Index = () => {
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link to="/" className="text-green-700 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
                   Home
+                </Link>
+                <Link to="/news" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Laatste nieuws
                 </Link>
                 <Link to="/gallery" className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
                   Fotogalerij
@@ -118,6 +121,71 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Latest News Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Laatste nieuws</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Blijf op de hoogte van het laatste nieuws uit onze buurt
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center mb-2">
+                  <Newspaper className="h-5 w-5 text-green-600 mr-2" />
+                  <span className="text-sm text-gray-500">15 december 2024</span>
+                </div>
+                <CardTitle className="text-lg">Buurtfeest 2024 was een groot succes!</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Ons jaarlijkse buurtfeest heeft weer vele bewoners samen gebracht voor een gezellige dag vol activiteiten.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center mb-2">
+                  <Newspaper className="h-5 w-5 text-green-600 mr-2" />
+                  <span className="text-sm text-gray-500">8 december 2024</span>
+                </div>
+                <CardTitle className="text-lg">Nieuwe buurtschoonmaak gepland</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Op zaterdag 21 december organiseren we een grote buurtschoonmaak. Alle bewoners zijn welkom om mee te helpen.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center mb-2">
+                  <Newspaper className="h-5 w-5 text-green-600 mr-2" />
+                  <span className="text-sm text-gray-500">1 december 2024</span>
+                </div>
+                <CardTitle className="text-lg">Winteractiviteiten voor kinderen</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Tijdens de kerstvakantie organiseren we leuke winteractiviteiten voor alle kinderen uit de buurt.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-8">
+            <Button asChild className="bg-green-600 hover:bg-green-700">
+              <Link to="/news">Bekijk al het nieuws</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -158,6 +226,7 @@ const Index = () => {
               <h4 className="text-lg font-semibold mb-4">Snel navigeren</h4>
               <ul className="space-y-2">
                 <li><Link to="/" className="text-gray-300 hover:text-white">Home</Link></li>
+                <li><Link to="/news" className="text-gray-300 hover:text-white">Laatste nieuws</Link></li>
                 <li><Link to="/gallery" className="text-gray-300 hover:text-white">Fotogalerij</Link></li>
                 <li><Link to="/calendar" className="text-gray-300 hover:text-white">Agenda</Link></li>
                 <li><Link to="/contact" className="text-gray-300 hover:text-white">Contact</Link></li>
