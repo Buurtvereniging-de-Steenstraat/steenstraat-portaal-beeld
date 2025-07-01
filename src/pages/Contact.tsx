@@ -80,6 +80,9 @@ ${formData.message}
                 <Link to="/calendar" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Buurtactiviteiten
                 </Link>
+                <Link to="/word-lid" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Word Lid
+                </Link>
                 <Link to="/contact" className="text-orange-700 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
                   Contact
                 </Link>
@@ -266,7 +269,8 @@ ${formData.message}
                 <li><Link to="/" className="text-orange-100 hover:text-white transition-colors">Home</Link></li>
                 <li><Link to="/news" className="text-orange-100 hover:text-white transition-colors">Laatste nieuws</Link></li>
                 <li><Link to="/gallery" className="text-orange-100 hover:text-white transition-colors">Fotogalerij</Link></li>
-                <li><Link to="/calendar" className="text-orange-100 hover:text-white transition-colors">Agenda</Link></li>
+                <li><Link to="/calendar" className="text-orange-100 hover:text-white transition-colors">Buurtactiviteiten</Link></li>
+                <li><Link to="/word-lid" className="text-orange-100 hover:text-white transition-colors">Word Lid</Link></li>
                 <li><Link to="/contact" className="text-orange-100 hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
