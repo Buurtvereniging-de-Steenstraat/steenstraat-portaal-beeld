@@ -70,53 +70,61 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Users className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <CardTitle>Buurtactiviteiten</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Regelmatige evenementen zoals buurtfeesten, spelletjesavonden en gezamenlijke maaltijden.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <Link to="/calendar" className="block">
+              <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <Users className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle>Buurtactiviteiten</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Regelmatige evenementen zoals buurtfeesten, spelletjesavonden en gezamenlijke maaltijden.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Camera className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <CardTitle>Fotogalerij</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Bekijk foto's van onze activiteiten en evenementen uit het verleden.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <Link to="/gallery" className="block">
+              <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <Camera className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle>Fotogalerij</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Bekijk foto's van onze activiteiten en evenementen uit het verleden.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Calendar className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <CardTitle>Agenda</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Blijf op de hoogte van komende vergaderingen en buurtactiviteiten.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <Link to="/calendar" className="block">
+              <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <Calendar className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle>Agenda</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Blijf op de hoogte van komende vergaderingen en buurtactiviteiten.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Mail className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <CardTitle>Contact</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Neem contact met ons op voor vragen, suggesties of om lid te worden.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <Link to="/contact" className="block">
+              <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <Mail className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle>Contact</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Neem contact met ons op voor vragen, suggesties of om lid te worden.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
