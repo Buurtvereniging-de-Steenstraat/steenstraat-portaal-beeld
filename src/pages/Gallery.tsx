@@ -11,7 +11,7 @@ const Gallery = () => {
       id: 1,
       src: "/BBQ.jpg",
       title: "BuurtBBQ 2025",
-      description: "Ons jaarlijkse BBQ was weer een groot succes"
+      description: "Onze jaarlijkse BBQ was weer een groot succes"
     },
     {
       id: 2,
