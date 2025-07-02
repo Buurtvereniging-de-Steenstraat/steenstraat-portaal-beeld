@@ -1,10 +1,75 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Users, Mail, Phone, MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { sendMembershipEmail } from "@/lib/emailjs";
+import { useToast } from "@/hooks/use-toast";
 
 const WordLid = () => {
   const currentYear = new Date().getFullYear();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    address: "",
+    phone: "",
+    iban: "",
+    accountHolder: "",
+    registrationDate: "",
+    message: ""
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const result = await sendMembershipEmail(formData);
+      
+      if (result.success) {
+        toast({
+          title: "Aanmelding verzonden!",
+          description: "Uw aanmelding is succesvol verzonden. We nemen binnen 24 uur contact met u op.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          address: "",
+          phone: "",
+          iban: "",
+          accountHolder: "",
+          registrationDate: "",
+          message: ""
+        });
+      } else {
+        toast({
+          title: "Fout bij verzenden",
+          description: "Er is een fout opgetreden bij het verzenden van uw aanmelding. Probeer het later opnieuw.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Fout bij verzenden",
+        description: "Er is een fout opgetreden bij het verzenden van uw aanmelding. Probeer het later opnieuw.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
@@ -131,7 +196,7 @@ const WordLid = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                       Naam *
@@ -139,8 +204,11 @@ const WordLid = () => {
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="Jouw naam"
+                      value={formData.name}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -151,8 +219,11 @@ const WordLid = () => {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="jouw@email.nl"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -163,8 +234,11 @@ const WordLid = () => {
                     <input
                       type="text"
                       id="address"
+                      name="address"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="Straatnaam en huisnummer"
+                      value={formData.address}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -175,8 +249,11 @@ const WordLid = () => {
                     <input
                       type="tel"
                       id="phone"
+                      name="phone"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="06 12345678"
+                      value={formData.phone}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div>
@@ -186,8 +263,11 @@ const WordLid = () => {
                     <input
                       type="text"
                       id="iban"
+                      name="iban"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="NL91 ABNA 0417 1643 00"
+                      value={formData.iban}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -198,8 +278,11 @@ const WordLid = () => {
                     <input
                       type="text"
                       id="accountHolder"
+                      name="accountHolder"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="Naam van de rekeninghouder"
+                      value={formData.accountHolder}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -210,7 +293,10 @@ const WordLid = () => {
                     <input
                       type="date"
                       id="registrationDate"
+                      name="registrationDate"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      value={formData.registrationDate}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -220,40 +306,22 @@ const WordLid = () => {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       rows={4}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                       placeholder="Eventuele opmerkingen of vragen..."
+                      value={formData.message}
+                      onChange={handleInputChange}
                     ></textarea>
                   </div>
                   <Button 
+                    type="submit"
                     className="w-full bg-gradient-to-r from-orange-500 to-green-500 hover:from-orange-600 hover:to-green-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-200 transform hover:scale-105"
-                    onClick={() => {
-                      const subject = "Aanmelding lidmaatschap Buurtvereniging de Steenstraat";
-                      const body = `Beste bestuur,
-
-Ik wil graag lid worden van Buurtvereniging de Steenstraat.
-
-Mijn gegevens:
-Naam: [Naam]
-E-mail: [E-mail]
-Adres: [Adres]
-Telefoon: [Telefoon]
-Rekening (IBAN NR): [IBAN]
-T.N.V.: [T.N.V.]
-Inschrijfdatum: [Inschrijfdatum]
-
-Opmerkingen: [Opmerkingen]
-
-Met vriendelijke groet,
-[Naam]`;
-
-                      const mailtoLink = `mailto:buurtverenigingdesteenstraat@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                      window.open(mailtoLink);
-                    }}
+                    disabled={isSubmitting}
                   >
-                    Aanmelden als lid
+                    {isSubmitting ? "Versturen..." : "Aanmelden als lid"}
                   </Button>
-                </div>
+                </form>
               </CardContent>
             </Card>
 

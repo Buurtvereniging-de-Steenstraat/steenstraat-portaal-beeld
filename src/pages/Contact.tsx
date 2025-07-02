@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/lib/emailjs";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,38 +27,45 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent(formData.subject);
-    const body = encodeURIComponent(`
-Naam: ${formData.name}
-Email: ${formData.email}
-Telefoon: ${formData.phone || 'Niet opgegeven'}
-
-Bericht:
-${formData.message}
-    `);
-    
-    const mailtoLink = `mailto:buurtverenigingdesteenstraat@outlook.com?subject=${subject}&body=${body}`;
-    
-    // Open default email client
-    window.open(mailtoLink);
-    
-    toast({
-      title: "Bericht voorbereid!",
-      description: "Uw email client wordt geopend. Verstuur het bericht om contact met ons op te nemen.",
-    });
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: ""
-    });
+    try {
+      const result = await sendContactEmail(formData);
+      
+      if (result.success) {
+        toast({
+          title: "Bericht verzonden!",
+          description: "Uw bericht is succesvol verzonden. We nemen binnen 24 uur contact met u op.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
+      } else {
+        toast({
+          title: "Fout bij verzenden",
+          description: "Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Fout bij verzenden",
+        description: "Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -243,9 +251,13 @@ ${formData.message}
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700">
+                <Button 
+                  type="submit" 
+                  className="w-full bg-orange-600 hover:bg-orange-700"
+                  disabled={isSubmitting}
+                >
                   <Send className="h-4 w-4 mr-2" />
-                  Verstuur bericht
+                  {isSubmitting ? "Versturen..." : "Verstuur bericht"}
                 </Button>
               </form>
             </CardContent>
