@@ -9,40 +9,40 @@ const Gallery = () => {
   const photos = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop",
-      title: "Buurtfeest 2024",
-      description: "Ons jaarlijkse buurtfeest was weer een groot succes"
+      src: "/BBQ.jpg",
+      title: "BuurtBBQ 2025",
+      description: "Ons jaarlijkse BBQ was weer een groot succes"
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?w=800&h=600&fit=crop",
-      title: "Wandelgroep",
-      description: "Gezamenlijke wandeling door het park"
+      src: "/pasen.jpg",
+      title: "Paaseieren zoeken",
+      description: "De jaarlijkse traditie van paaseieren zoeken in de buurt"
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop",
-      title: "Buurtschoonmaak",
-      description: "Samen zorgen we voor een schone buurt"
-    },
-    {
-      id: 4,
-      src: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&h=600&fit=crop",
-      title: "Huisdierendag",
-      description: "Onze buurt huisdieren in de spotlight"
-    },
-    {
-      id: 5,
-      src: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop",
-      title: "Gezamenlijke koffie",
-      description: "Gezellig samenkomen in het buurthuis"
-    },
-    {
-      id: 6,
-      src: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=800&h=600&fit=crop",
-      title: "Kinderactiviteiten",
-      description: "Leuke activiteiten voor de jongste buurtbewoners"
+      src: "/zonnebloem.jpg",
+      title: "Zonnebloem",
+      description: "Wie kweekt de grootste zonnebloem in de buurt?"
     }
+    // {
+    //   id: 4,
+    //   src: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&h=600&fit=crop",
+    //   title: "Huisdierendag",
+    //   description: "Onze buurt huisdieren in de spotlight"
+    // },
+    // {
+    //   id: 5,
+    //   src: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop",
+    //   title: "Gezamenlijke koffie",
+    //   description: "Gezellig samenkomen in het buurthuis"
+    // },
+    // {
+    //   id: 6,
+    //   src: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=800&h=600&fit=crop",
+    //   title: "Kinderactiviteiten",
+    //   description: "Leuke activiteiten voor de jongste buurtbewoners"
+    // }
   ];
 
   return (
