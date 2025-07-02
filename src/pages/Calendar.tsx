@@ -3,7 +3,6 @@ import { ArrowLeft, Calendar as CalendarIcon, Clock, MapPin, Mail, Phone } from 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Header from "@/components/Header";
 
 const Calendar = () => {
   const events = [
@@ -144,7 +143,38 @@ const Calendar = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
-      <Header />
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <img src="/logo.jpg" alt="Logo" className="h-24 w-24 mr-3 rounded-full border border-gray-200" />
+            </div>
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-4">
+                <Link to="/" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Home
+                </Link>
+                <Link to="/news" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Laatste nieuws
+                </Link>
+                <Link to="/gallery" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Fotogalerij
+                </Link>
+                <Link to="/calendar" className="text-orange-700 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Buurtactiviteiten
+                </Link>
+                <Link to="/word-lid" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Word Lid
+                </Link>
+                <Link to="/contact" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
+                  Contact
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
