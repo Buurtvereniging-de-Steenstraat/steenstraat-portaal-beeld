@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/67d41ff4-d7f4-4554-b121-55dc6bca0129/deploy-status)](https://app.netlify.com/projects/bvdesteenstraat/deploys)
+
 # Welcome to your Lovable project
 
 ## Project info
