@@ -133,7 +133,7 @@ const Contact = () => {
                   <p className="text-gray-600">Voorzitter</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Edwina Treebush</h4>
+                  <h4 className="font-semibold text-gray-900">Edwina Treebusch</h4>
                   <p className="text-gray-600">Secretaris</p>
                 </div>
                 <div>
