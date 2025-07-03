@@ -138,7 +138,7 @@ const Index = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Over onze buurt</h2>
               <p className="text-lg text-gray-600 mb-6">
                 De Steenstraat is een levendige wijk waar buren elkaar kennen en voor elkaar zorgen. 
-                Onze buurtvereniging bestaat al meer dan 20 jaar en organiseert het hele jaar door 
+                Onze buurtvereniging bestaat al meer dan 40 jaar en organiseert het hele jaar door 
                 activiteiten voor jong en oud.
               </p>
               <p className="text-lg text-gray-600 mb-8">

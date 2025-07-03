@@ -141,12 +141,12 @@ const Contact = () => {
                   <p className="text-gray-600">Penningmeester</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Nina Rommen</h4>
-                  <p className="text-gray-600">bestuursmedewerker</p>
+                  <h4 className="font-semibold text-gray-900">Nina Romme</h4>
+                  <p className="text-gray-600">Algemeen bestuurslid</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Rik Bosvelt</h4>
-                  <p className="text-gray-600">bestuursmedewerker</p>
+                  <p className="text-gray-600">Algemeen bestuurslid</p>
                 </div>
               </CardContent>
             </Card>
