@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Seo } from "@/components/Seo"
 import { ArrowLeft, Mail, Phone, MapPin, Send, Facebook } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -71,6 +72,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+      <Seo title="Contact | Buurtvereniging De Steenstraat" description="Neem contact op met Buurtvereniging De Steenstraat voor vragen, nieuws of lidmaatschap." url="https://bvdesteenstraat.nl/contact" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}

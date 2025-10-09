@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Seo } from "@/components/Seo"
 import { ArrowLeft, Calendar, User, Mail, Phone, MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+      <Seo title="Nieuws | Buurtvereniging De Steenstraat" description="Laatste nieuws en updates van Buurtvereniging De Steenstraat in Eersel." url="https://bvdesteenstraat.nl/news" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}

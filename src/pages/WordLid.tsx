@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Seo } from "@/components/Seo"
 import { Link } from "react-router-dom";
 import { ArrowLeft, Users, Mail, Phone, MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -74,6 +75,7 @@ const WordLid = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+      <Seo title="Word lid | Buurtvereniging De Steenstraat" description="Meld je aan als lid van Buurtvereniging De Steenstraat en doe mee aan buurtactiviteiten." url="https://bvdesteenstraat.nl/word-lid" />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Seo } from "@/components/Seo"
 import { Calendar, Users, Camera, Mail, MapPin, Phone, Newspaper, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +11,7 @@ const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+      <Seo title="Buurtvereniging De Steenstraat | Home" description="Samen bouwen we aan een sterke, gezellige buurt in Eersel. Bekijk activiteiten, nieuws en contactinformatie." url="https://bvdesteenstraat.nl/" />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-orange-600 to-green-600 text-white">

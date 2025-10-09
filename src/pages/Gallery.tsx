@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Seo } from "@/components/Seo"
 import { ArrowLeft, Menu, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,6 +48,7 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+      <Seo title="Fotogalerij | Buurtvereniging De Steenstraat" description="Foto's van buurtactiviteiten en evenementen in De Steenstraat." url="https://bvdesteenstraat.nl/gallery" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
