@@ -3,7 +3,7 @@ import { ArrowLeft, Menu, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import Header from "@/components/Header";
+// Header is provided globally by App
 
 const Gallery = () => {
   const photos = [
@@ -47,7 +47,6 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
-      <Header />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}

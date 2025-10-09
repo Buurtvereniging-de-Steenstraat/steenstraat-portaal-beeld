@@ -9,7 +9,7 @@ const Calendar = () => {
     {
       id: 1,
       title: "Paaseieren Zoeken",
-      date: "2025-05-19",
+      date: "2025-04-19",
       time: "10:30-12:00",
       location: "Locatie crossbaan",
       type: "Activiteit",
@@ -29,7 +29,7 @@ const Calendar = () => {
       title: "Garage Sale",
       date: "2025-05-24",
       time: "10:00-12:30",
-      location: "Garage van de Steenstraat / Kraanvogel",
+      location: "Garage sale de Steenstraat / Kraanvogel",
       type: "Activiteit",
       description: "Garage Sale voor leden en buurtbewoners. Verkoop je spullen of kom snuffelen. Samen met buurtvereniging de Kraanvogel" 
     },
@@ -46,7 +46,7 @@ const Calendar = () => {
       id: 5,
       title: "Tieneractiviteit",
       date: "2025-09-06",
-      time: "19:00",
+      time: "17:00-20:00",
       location: "",
       type: "Activiteit",
       description: "Tiener activiteit voor alleen leden van de buurtvereniging"
@@ -54,18 +54,17 @@ const Calendar = () => {
         {
       id: 6,
       title: "Vrouwenavond",
-      date: "2025-09-27",
-      time: "19:00-24:00",
+      date: "2025-11-15",
+      time: "18:00-24:00",
       location: "",
       type: "Activiteit",
       description: "Alleen voor leden van de buurtvereniging"
     },
-    ,
         {
       id: 7,
       title: "Mannenavond",
       date: "2025-10-04",
-      time: "19:00-24:00",
+      time: "18:00-24:00",
       location: "",
       type: "Activiteit",
       description: "Alleen voor leden van de buurtvereniging"
@@ -79,20 +78,20 @@ const Calendar = () => {
       type: "Activiteit",
       description: "Voor leden en buurtbewoners"
     },
-            {
-      id: 9,
-      title: "Bikken bij de buuf",
-      date: "2025-11-08",
-      time: "18:00-23:00",
-      location: "Steenstraat",
-      type: "Activiteit",
-      description: "Alleen voor leden van de buurtvereniging"
-    },
+    //         {
+    //   id: 9,
+    //   title: "Bikken bij de buuf",
+    //   date: "2025-11-08",
+    //   time: "18:00-23:00",
+    //   location: "Steenstraat",
+    //   type: "Activiteit",
+    //   description: "Alleen voor leden van de buurtvereniging"
+    // },
             {
       id: 10,
       title: "Sinterklaas",
       date: "2025-11-23",
-      time: "10:00-12:00",
+      time: "14:00-16:30",
       location: "",
       type: "Activiteit",
       description: "Alleen voor leden van de buurtvereniging"
@@ -143,39 +142,6 @@ const Calendar = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <img src="/logo.jpg" alt="Logo" className="h-24 w-24 mr-3 rounded-full border border-gray-200" />
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link to="/" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Home
-                </Link>
-                <Link to="/news" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Laatste nieuws
-                </Link>
-                <Link to="/gallery" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Fotogalerij
-                </Link>
-                <Link to="/calendar" className="text-orange-700 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Buurtactiviteiten
-                </Link>
-                <Link to="/word-lid" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Word Lid
-                </Link>
-                <Link to="/contact" className="text-orange-600 hover:text-orange-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Contact
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -240,42 +206,7 @@ const Calendar = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-orange-600 to-green-600 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Buurtvereniging de Steenstraat</h3>
-              <p className="text-orange-100">
-                Samen maken we onze buurt een fijne plek om te wonen.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Snel navigeren</h4>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-orange-100 hover:text-white transition-colors">Home</Link></li>
-                <li><Link to="/news" className="text-orange-100 hover:text-white transition-colors">Laatste nieuws</Link></li>
-                <li><Link to="/gallery" className="text-orange-100 hover:text-white transition-colors">Fotogalerij</Link></li>
-                <li><Link to="/calendar" className="text-orange-100 hover:text-white transition-colors">Buurtactiviteiten</Link></li>
-                <li><Link to="/word-lid" className="text-orange-100 hover:text-white transition-colors">Word Lid</Link></li>
-                <li><Link to="/contact" className="text-orange-100 hover:text-white transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
-              <div className="space-y-2 text-orange-100">
-                <div className="flex items-center">
-                  <Mail className="h-4 w-4 mr-2" />
-                  <span>buurtverenigingdesteenstraat@outlook.com</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-orange-500 mt-8 pt-8 text-center text-orange-200">
-            <p>&copy; {new Date().getFullYear()} Buurtvereniging de Steenstraat. Alle rechten voorbehouden.</p>
-          </div>
-        </div>
-      </footer>
+      {/* Footer is provided globally by App */}
     </div>
   );
 };

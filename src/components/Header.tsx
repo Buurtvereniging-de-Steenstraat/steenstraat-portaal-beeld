@@ -39,6 +39,7 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              {/* (Facebook link moved to footer) */}
             </div>
           </div>
           {/* Hamburger Button for Mobile */}
@@ -72,6 +73,7 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
+            {/* (Facebook link moved to footer) */}
           </div>
         </div>
       )}

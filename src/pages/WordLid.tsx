@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { sendMembershipEmail } from "@/lib/emailjs";
 import { useToast } from "@/hooks/use-toast";
-import Header from "@/components/Header";
+// Header is provided globally by App
 
 const WordLid = () => {
   const currentYear = new Date().getFullYear();
@@ -74,7 +74,6 @@ const WordLid = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
-      <Header />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -304,44 +303,7 @@ const WordLid = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-orange-500 to-green-500 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Buurtvereniging de Steenstraat</h3>
-              <p className="text-orange-100">
-                Samen maken we onze buurt gezelliger en leefbaarder.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <div className="space-y-2 text-orange-100">
-                <div className="flex items-center">
-                  <Mail className="h-4 w-4 mr-2" />
-                  <a href="mailto:buurtverenigingdesteenstraat@outlook.com" className="hover:text-white transition-colors">
-                    buurtverenigingdesteenstraat@outlook.com
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Navigatie</h3>
-              <ul className="space-y-2 text-orange-100">
-                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li><Link to="/news" className="hover:text-white transition-colors">Laatste nieuws</Link></li>
-                <li><Link to="/gallery" className="hover:text-white transition-colors">Fotogalerij</Link></li>
-                <li><Link to="/calendar" className="hover:text-white transition-colors">Buurtactiviteiten</Link></li>
-                <li><Link to="/word-lid" className="hover:text-white transition-colors">Word Lid</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-orange-400 mt-8 pt-8 text-center text-orange-100">
-            <p>&copy; {currentYear} Buurtvereniging de Steenstraat. Alle rechten voorbehouden.</p>
-          </div>
-        </div>
-      </footer>
+      {/* Footer is provided globally by App */}
     </div>
   );
 };
