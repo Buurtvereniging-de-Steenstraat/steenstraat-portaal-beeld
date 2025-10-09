@@ -1,5 +1,4 @@
 /*    /index.html   200
-/index.html  200
 
 # Static asset passthrough (allow direct serving of assets)
 /assets/*  /assets/:splat 200
