@@ -52,15 +52,6 @@ const Calendar = () => {
       description: "Tiener activiteit voor alleen leden van de buurtvereniging"
     },
         {
-      id: 6,
-      title: "Vrouwenavond",
-      date: "2025-11-15",
-      time: "18:00-24:00",
-      location: "",
-      type: "Activiteit",
-      description: "Alleen voor leden van de buurtvereniging"
-    },
-        {
       id: 7,
       title: "Mannenavond",
       date: "2025-10-04",
@@ -69,8 +60,17 @@ const Calendar = () => {
       type: "Activiteit",
       description: "Alleen voor leden van de buurtvereniging"
     },
-      {
+        {
       id: 8,
+      title: "Vrouwenavond",
+      date: "2025-11-15",
+      time: "18:00-24:00",
+      location: "",
+      type: "Activiteit",
+      description: "Alleen voor leden van de buurtvereniging"
+    },
+      {
+      id: 9,
       title: "Halloween",
       date: "2025-10-25",
       time: "18:00-21:00",
