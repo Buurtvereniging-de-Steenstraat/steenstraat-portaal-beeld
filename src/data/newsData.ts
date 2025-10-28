@@ -9,6 +9,15 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    id: 2,
+    title: "Rabo Clubsupport",
+    date: new Date().toLocaleString("nl-NL", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }),
+    author: "Buurtvereniging",
+    // excerpt: "Dankzij jullie stemmen hebben we €208,73 opgehaald met de Rabo Clubsupport.",
+    content: "Dankzij jullie stemmen hebben we €208,73 opgehaald met de Rabo Clubsupport. Bedankt voor jullie stemmen.",
+    image: "/clubkas2025.jpg"
+  },
   // {
   //   id: 1,
   //   title: "Buurtfeest 2024 was een groot succes!",

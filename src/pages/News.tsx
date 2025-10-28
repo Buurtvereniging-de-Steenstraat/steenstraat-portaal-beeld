@@ -30,7 +30,8 @@ const News = () => {
         {/* News Items */}
         <div className="space-y-6">
           {newsItems.map((item) => (
-            <Card key={item.id} className="hover:shadow-lg transition-shadow">
+            <Link key={item.id} to={`/news/${item.id}`} className="block">
+              <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xl">{item.title}</CardTitle>
@@ -48,18 +49,22 @@ const News = () => {
                 <CardDescription className="text-base">{item.excerpt}</CardDescription>
               </CardHeader>
               <CardContent>
-                {item.image && (
-                  <div className="mb-4">
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="w-full max-h-64 object-contain rounded-lg"
-                    />
-                  </div>
-                )}
+                  {item.image && (
+                    <div className="mb-4">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className={
+                          "w-full max-h-64 object-contain rounded-lg " +
+                          (item.image === "/clubkas2025.jpg" ? "rotate-90" : "")
+                        }
+                      />
+                    </div>
+                  )}
                 <p className="text-gray-700">{item.content}</p>
               </CardContent>
-            </Card>
+              </Card>
+            </Link>
           ))}
         </div>
 

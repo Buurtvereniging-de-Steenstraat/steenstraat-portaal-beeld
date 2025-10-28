@@ -106,7 +106,14 @@ const Index = () => {
               <Card key={item.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   {item.image && (
-                    <img src={item.image} alt={item.title} className="w-full max-h-48 object-contain rounded mb-4" />
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className={
+                        "w-full max-h-48 object-contain rounded mb-4 " +
+                        (item.image === "/clubkas2025.jpg" ? "rotate-90" : "")
+                      }
+                    />
                   )}
                   <div className="flex items-center mb-2">
                     <Newspaper className="h-5 w-5 text-orange-600 mr-2" />
