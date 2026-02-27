@@ -7,10 +7,10 @@ hero:
 
 features:
   title: "Wat wij doen"
-  subtitle: "Onze buurtvereniging organiseert diverse activiteiten en zorgt voor een sterke gemeenschap."
+  subtitle: "Onze buurtvereniging organiseert diverse buurtactiviteiten en zorgt voor een sterke gemeenschap in Eersel."
   items:
     - title: "Buurtactiviteiten"
-      description: "Regelmatige evenementen zoals buurtfeesten, spelletjesavonden en gezamenlijke maaltijden."
+      description: "Regelmatige evenementen zoals een buurtfeesten, spelletjesavonden en gezamenlijke maaltijden."
       link: "/calendar"
     - title: "Fotogalerij"
       description: "Bekijk foto's van onze activiteiten en evenementen uit het verleden."
@@ -27,7 +27,7 @@ news:
 about:
   title: "Over onze buurt"
   paragraph1: "De Steenstraat is een levendige wijk waar buren elkaar kennen en voor elkaar zorgen. Onze buurtvereniging bestaat al meer dan 40 jaar en organiseert het hele jaar door activiteiten voor jong en oud."
-  paragraph2: "Van jaarlijkse buurt BBQ tot schaatsen, van kerststukjes maken tot sieraden maken , van paaseieren zoeken tot pepernoten rapen en garage-sale, er is altijd wel iets te doen. Word lid en ontmoet je buren!"
+  paragraph2: "Van jaarlijkse buurt BBQ tot schaatsen, van kerststukjes maken tot sieraden maken , van paaseieren zoeken tot pepernoten rapen een garage-sale, er is altijd wel iets te doen. Word lid en ontmoet je buren!"
   cta: "Meer informatie"
   ctaLink: "/contact"
 ---
