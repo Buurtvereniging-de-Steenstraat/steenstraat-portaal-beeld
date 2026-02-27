@@ -1,13 +1,23 @@
 import React from "react"
 
+const BASE_URL = "https://bvdesteenstraat.nl"
+
+function toAbsoluteUrl(path?: string | null): string {
+  if (!path) return `${BASE_URL}/logo.jpg`
+  if (path.startsWith("http")) return path
+  return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`
+}
+
 type SeoProps = {
   title: string
   description?: string
   url?: string
   image?: string
+  /** For news articles: { headline, datePublished, author } */
+  article?: { headline: string; datePublished: string; author?: string }
 }
 
-export function Seo({ title, description, url, image }: SeoProps) {
+export function Seo({ title, description, url, image, article }: SeoProps) {
   React.useEffect(() => {
     const prevTitle = document.title
     document.title = title
@@ -39,13 +49,16 @@ export function Seo({ title, description, url, image }: SeoProps) {
     setOg("og:description", description ?? "Buurtvereniging de Steenstraat - Samen bouwen we aan een sterke, gezellige buurt waar iedereen zich thuis voelt.")
     setOg("og:type", "website")
     if (url) setOg("og:url", url)
-    if (image) setOg("og:image", image)
+    const ogImage = toAbsoluteUrl(image)
+    setOg("og:image", ogImage)
+    setOg("og:image:alt", title)
+    setOg("og:locale", "nl_NL")
 
     // Twitter card
-    setMeta("twitter:card", image ? "summary_large_image" : "summary")
+    setMeta("twitter:card", "summary_large_image")
     setMeta("twitter:title", title)
     if (description) setMeta("twitter:description", description)
-    if (image) setMeta("twitter:image", image)
+    setMeta("twitter:image", ogImage)
 
     // Site-wide meta
     setMeta("keywords", "Buurtvereniging de Steenstraat, Buurtvereniging, De Steenstraat, Eersel, buurtvereniging de steenstraat")
@@ -66,36 +79,40 @@ export function Seo({ title, description, url, image }: SeoProps) {
       // ignore in non-browser environments
     }
 
-    // JSON-LD Organization + WebSite
-    const ld = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "name": "Buurtvereniging De Steenstraat",
-          "url": url ?? (typeof window !== "undefined" ? window.location.origin : "https://bvdesteenstraat.nl"),
-          "logo": "https://bvdesteenstraat.nl/logo.jpg",
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "contactType": "customer support",
-              "email": "buurtverenigingdesteenstraat@outlook.com",
-              "availableLanguage": ["Dutch"]
-            }
-          ],
-          "sameAs": ["https://www.facebook.com/groups/396194063895407"]
-        },
-        {
-          "@type": "WebSite",
-          "url": url ?? (typeof window !== "undefined" ? window.location.origin : "https://bvdesteenstraat.nl"),
-          "name": title,
-          "publisher": {
-            "@type": "Organization",
-            "name": "Buurtvereniging De Steenstraat"
-          }
-        }
-      ]
+    const siteUrl = url ?? (typeof window !== "undefined" ? window.location.origin : BASE_URL)
+    const graph: object[] = [
+      {
+        "@type": "Organization",
+        "name": "Buurtvereniging De Steenstraat",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/logo.jpg`,
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "buurtverenigingdesteenstraat@outlook.com",
+          "availableLanguage": ["Dutch"]
+        }],
+        "sameAs": ["https://www.facebook.com/groups/396194063895407"]
+      },
+      {
+        "@type": "WebSite",
+        "url": BASE_URL,
+        "name": "Buurtvereniging De Steenstraat",
+        "publisher": { "@type": "Organization", "name": "Buurtvereniging De Steenstraat" }
+      }
+    ]
+    if (article) {
+      graph.push({
+        "@type": "NewsArticle",
+        "headline": article.headline,
+        "datePublished": article.datePublished,
+        "author": { "@type": "Organization", "name": article.author ?? "Buurtvereniging De Steenstraat" },
+        "publisher": { "@type": "Organization", "name": "Buurtvereniging De Steenstraat", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.jpg` } },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": siteUrl },
+        "image": ogImage
+      })
     }
+    const ld = { "@context": "https://schema.org", "@graph": graph }
 
     const scriptId = "seo-jsonld"
     let scriptEl = document.getElementById(scriptId) as HTMLScriptElement | null
@@ -114,7 +131,7 @@ export function Seo({ title, description, url, image }: SeoProps) {
       const existing = document.getElementById("seo-jsonld")
       if (existing && existing.parentNode) existing.parentNode.removeChild(existing)
     }
-  }, [title, description, url, image])
+  }, [title, description, url, image, article])
 
   return null
 }

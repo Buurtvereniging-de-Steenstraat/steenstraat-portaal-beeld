@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useJson } from "@/hooks/useContent";
 
-const menuItems = [
+const defaultMenuItems = [
   { to: "/", label: "Home" },
   { to: "/news", label: "Laatste nieuws" },
   { to: "/gallery", label: "Fotogalerij" },
@@ -14,6 +15,8 @@ const menuItems = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { data: site } = useJson<{ nav?: typeof defaultMenuItems }>("site.json");
+  const menuItems = site?.nav ?? defaultMenuItems;
 
   return (
     <nav className="bg-white shadow-sm border-b relative z-20">
@@ -39,7 +42,6 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              {/* (Facebook link moved to footer) */}
             </div>
           </div>
           {/* Hamburger Button for Mobile */}
@@ -73,10 +75,9 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            {/* (Facebook link moved to footer) */}
           </div>
         </div>
       )}
     </nav>
   );
-} 
+}

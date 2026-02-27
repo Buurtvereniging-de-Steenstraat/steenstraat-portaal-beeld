@@ -1,122 +1,42 @@
 import { Link } from "react-router-dom";
-import { Seo } from "@/components/Seo"
-import { ArrowLeft, Calendar as CalendarIcon, Clock, MapPin, Mail, Phone } from "lucide-react";
+import { Seo } from "@/components/Seo";
+import { ArrowLeft, Calendar as CalendarIcon, Clock, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useMarkdown, useJson } from "@/hooks/useContent";
+
+interface CalendarEvent {
+  id: number;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  type: string;
+  description: string;
+}
+
+interface CalendarData {
+  title?: string;
+  subtitle?: string;
+  ctaTitle?: string;
+  ctaText?: string;
+  ctaButton?: string;
+  events?: CalendarEvent[];
+}
 
 const Calendar = () => {
-  const events = [
-    {
-      id: 1,
-      title: "Paaseieren Zoeken",
-      date: "2025-04-19",
-      time: "10:30-12:00",
-      location: "Locatie crossbaan",
-      type: "Activiteit",
-      description: "Paaseieren zoeken voor kinderen van 4-12 jaar samen met buurtvereniging de Kraanvogel"
-    },
-    {
-      id: 2,
-      title: "Zonnebloemactie",
-      date: "2025-05-01",
-      time: "-",
-      location: "-",
-      type: "Activiteit",
-      description: "Zonnebloemactie voor leden en buurtbewoners"
-    },
-    {
-      id: 3,
-      title: "Garage Sale",
-      date: "2025-05-24",
-      time: "10:00-12:30",
-      location: "Garage sale de Steenstraat / Kraanvogel",
-      type: "Activiteit",
-      description: "Garage Sale voor leden en buurtbewoners. Verkoop je spullen of kom snuffelen. Samen met buurtvereniging de Kraanvogel" 
-    },
-    {
-      id: 4,
-      title: "Jaarlijkse Buurt barbecue",
-      date: "2025-08-30",
-      time: "17:00-23:00",
-      location: "Heibloempark",
-      type: "Activiteit",
-      description: "Jaarlijkse buurt barbecue voor leden en buurtbewoners"
-    },
-        {
-      id: 5,
-      title: "Tieneractiviteit",
-      date: "2025-09-06",
-      time: "17:00-20:00",
-      location: "",
-      type: "Activiteit",
-      description: "Tiener activiteit voor alleen leden van de buurtvereniging"
-    },
-        {
-      id: 7,
-      title: "Mannenavond",
-      date: "2025-10-04",
-      time: "18:00-24:00",
-      location: "",
-      type: "Activiteit",
-      description: "Alleen voor leden van de buurtvereniging"
-    },
-        {
-      id: 8,
-      title: "Vrouwenavond",
-      date: "2025-11-15",
-      time: "18:00-24:00",
-      location: "",
-      type: "Activiteit",
-      description: "Alleen voor leden van de buurtvereniging"
-    },
-      {
-      id: 9,
-      title: "Halloween",
-      date: "2025-10-25",
-      time: "18:00-21:00",
-      location: "Eersel",
-      type: "Activiteit",
-      description: "Voor leden en buurtbewoners"
-    },
-    //         {
-    //   id: 9,
-    //   title: "Bikken bij de buuf",
-    //   date: "2025-11-08",
-    //   time: "18:00-23:00",
-    //   location: "Steenstraat",
-    //   type: "Activiteit",
-    //   description: "Alleen voor leden van de buurtvereniging"
-    // },
-            {
-      id: 10,
-      title: "Sinterklaas",
-      date: "2025-11-23",
-      time: "14:00-16:30",
-      location: "",
-      type: "Activiteit",
-      description: "Alleen voor leden van de buurtvereniging"
-    },
-            {
-      id: 11,
-      title: "Kerstbomen plaatsen",
-      date: "2025-12-06",
-      time: "10:00-11:00",
-      location: "",
-      type: "Activiteit",
-      description: "Bestuursleden"
-    },
-                {
-      id: 12,
-      title: "Kerstworkshop",
-      date: "2025-12-09",
-      time: "19:00-23:00",
-      location: "",
-      type: "Activiteit",
-      description: "Alleen voor leden van de buurtvereniging"
-    }             
-
-  ];
+  const { data: mdData } = useMarkdown<CalendarData>("calendar.md");
+  const { data: jsonData } = useJson<CalendarData>("calendar.json");
+  // Prefer markdown; fall back to JSON if markdown has no events (e.g. fetch/parse issue)
+  const mdEvents = mdData?.data?.events ?? [];
+  const data = mdEvents.length > 0 ? mdData?.data : jsonData;
+  const events = data?.events ?? [];
+  const title = data?.title ?? "Buurtactiviteiten";
+  const subtitle = data?.subtitle ?? "Kom naar onze activiteiten en vergaderingen";
+  const ctaTitle = data?.ctaTitle ?? "Suggesties voor activiteiten?";
+  const ctaText = data?.ctaText ?? "Heb je ideeën voor nieuwe buurtactiviteiten? Laat het ons weten!";
+  const ctaButton = data?.ctaButton ?? "Deel je idee";
 
   const getEventTypeColor = (type: string) => {
     switch (type) {
@@ -133,11 +53,11 @@ const Calendar = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('nl-NL', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString("nl-NL", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -145,7 +65,6 @@ const Calendar = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
       <Seo title="Buurtactiviteiten | Buurtvereniging De Steenstraat" description="Overzicht van aankomende buurtactiviteiten, vergaderingen en evenementen in De Steenstraat." url="https://bvdesteenstraat.nl/calendar" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="mb-8">
           <Button asChild variant="ghost" className="mb-4">
             <Link to="/">
@@ -153,13 +72,10 @@ const Calendar = () => {
               Terug naar home
             </Link>
           </Button>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Buurtactiviteiten</h1>
-          <p className="text-lg text-gray-600">
-            Kom naar onze activiteiten en vergaderingen
-          </p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
+          <p className="text-lg text-gray-600">{subtitle}</p>
         </div>
 
-        {/* Events List */}
         <div className="space-y-6">
           {events.map((event) => (
             <Card key={event.id} className="hover:shadow-lg transition-shadow">
@@ -172,9 +88,7 @@ const Calendar = () => {
                       {formatDate(event.date)}
                     </div>
                   </div>
-                  <Badge className={getEventTypeColor(event.type)}>
-                    {event.type}
-                  </Badge>
+                  <Badge className={getEventTypeColor(event.type)}>{event.type}</Badge>
                 </div>
               </CardHeader>
               <CardContent>
@@ -194,21 +108,14 @@ const Calendar = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
         <div className="mt-12 text-center bg-white rounded-lg p-8 shadow-sm">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Suggesties voor activiteiten?
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Heb je ideeën voor nieuwe buurtactiviteiten? Laat het ons weten!
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">{ctaTitle}</h2>
+          <p className="text-gray-600 mb-6">{ctaText}</p>
           <Button asChild className="bg-orange-600 hover:bg-orange-700">
-            <Link to="/contact">Deel je idee</Link>
+            <Link to="/contact">{ctaButton}</Link>
           </Button>
         </div>
       </div>
-
-      {/* Footer is provided globally by App */}
     </div>
   );
 };

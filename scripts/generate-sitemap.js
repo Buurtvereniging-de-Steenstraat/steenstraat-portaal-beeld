@@ -9,37 +9,28 @@ const __dirname = path.dirname(__filename)
 
 // Config
 const repoRoot = path.resolve(__dirname, '..')
-const newsFile = path.join(repoRoot, 'src', 'data', 'newsData.ts')
+const newsFile = path.join(repoRoot, 'public', 'content', 'news', 'index.json')
 const outDir = path.join(repoRoot, 'public')
 const outFile = path.join(outDir, 'sitemap.xml')
 const baseUrl = process.env.SITE_URL || 'https://bvdesteenstraat.nl'
 
 function parseNews(text) {
-  const items = []
-  // Match objects with id and title. This is a lightweight parser tolerant to simple TS object syntax.
-  const re = /\{([\s\S]*?)\}/g
-  let m
-  while ((m = re.exec(text)) !== null) {
-    const block = m[1]
-    const idMatch = /\bid\s*:\s*(\d+)/.exec(block)
-    const titleMatch = /\btitle\s*:\s*"([^"]+)"/.exec(block)
-    if (idMatch && titleMatch) {
-      const id = idMatch[1]
-      const title = titleMatch[1]
-      items.push({ id: id, title: title })
-    }
+  try {
+    const data = JSON.parse(text)
+    return Array.isArray(data) ? data.map(item => ({ slug: item.slug })) : []
+  } catch {
+    return []
   }
-  return items
 }
 
 function buildSitemap(newsItems) {
   const urls = [
-    '/',
-    '/news',
-    '/contact',
-    '/gallery',
-    '/calendar',
-    '/word-lid'
+    { path: '/', priority: '1.0' },
+    { path: '/word-lid', priority: '0.9' },
+    { path: '/news', priority: '0.8' },
+    { path: '/calendar', priority: '0.8' },
+    { path: '/gallery', priority: '0.7' },
+    { path: '/contact', priority: '0.8' }
   ]
 
   const now = new Date().toISOString()
@@ -47,20 +38,22 @@ function buildSitemap(newsItems) {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 
-  urls.forEach(u => {
+  urls.forEach(({ path, priority }) => {
     xml += '  <url>\n'
-    xml += `    <loc>${baseUrl}${u}</loc>\n`
+    xml += `    <loc>${baseUrl}${path}</loc>\n`
     xml += `    <lastmod>${now}</lastmod>\n`
-    xml += '    <changefreq>monthly</changefreq>\n'
+    xml += `    <changefreq>monthly</changefreq>\n`
+    xml += `    <priority>${priority}</priority>\n`
     xml += '  </url>\n'
   })
 
   // Add news items
   newsItems.forEach(item => {
     xml += '  <url>\n'
-    xml += `    <loc>${baseUrl}/news/${item.id}</loc>\n`
+    xml += `    <loc>${baseUrl}/news/${item.slug}</loc>\n`
     xml += `    <lastmod>${now}</lastmod>\n`
-    xml += '    <changefreq>monthly</changefreq>\n'
+    xml += '    <changefreq>weekly</changefreq>\n'
+    xml += '    <priority>0.7</priority>\n'
     xml += '  </url>\n'
   })
 
@@ -71,8 +64,11 @@ function buildSitemap(newsItems) {
 async function main() {
   try {
     if (!existsSync(outDir)) await mkdir(outDir, { recursive: true })
-    const txt = await readFile(newsFile, 'utf8')
-    const news = parseNews(txt)
+    let news = []
+    if (existsSync(newsFile)) {
+      const txt = await readFile(newsFile, 'utf8')
+      news = parseNews(txt)
+    }
     const sitemap = buildSitemap(news)
     await writeFile(outFile, sitemap, 'utf8')
     console.log(`Wrote sitemap with ${news.length} news entries to ${outFile}`)
