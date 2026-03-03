@@ -8,23 +8,23 @@ ctaButton: "Deel je idee"
 events:
   - id: 1
     title: "Paaseieren Zoeken"
-    date: "2025-04-19"
+    date: "2026-04-04"
     time: "10:30-12:00"
     location: "Locatie crossbaan"
     type: "Activiteit"
-    description: "Paaseieren zoeken voor kinderen van 4-12 jaar samen met buurtvereniging de Kraanvogel"
+    description: "Paaseieren zoeken voor kinderen van 4-12 jaar samen met buurtvereniging de Kraanvogel. Alleen voor leden"
 
   - id: 2
     title: "Zonnebloemactie"
-    date: "2025-05-01"
+    date: "2026-05-01"
     time: "-"
     location: "-"
     type: "Activiteit"
-    description: "Zonnebloemactie voor leden en buurtbewoners"
+    description: "Zonnebloemactie voor leden en niet leden"
 
   - id: 3
     title: "Garage Sale"
-    date: "2025-05-24"
+    date: "2026-05-30"
     time: "10:00-12:30"
     location: "Garage sale de Steenstraat / Kraanvogel"
     type: "Activiteit"
@@ -32,7 +32,7 @@ events:
 
   - id: 4
     title: "Jaarlijkse Buurt barbecue"
-    date: "2025-08-30"
+    date: "2026-09-05"
     time: "17:00-23:00"
     location: "Heibloempark"
     type: "Activiteit"
@@ -40,7 +40,7 @@ events:
 
   - id: 5
     title: "Tieneractiviteit"
-    date: "2025-09-06"
+    date: "2026-10-03"
     time: "17:00-20:00"
     location: ""
     type: "Activiteit"
@@ -48,31 +48,31 @@ events:
 
   - id: 7
     title: "Mannenavond"
-    date: "2025-10-04"
+    date: "2026-10-10"
     time: "18:00-24:00"
     location: ""
     type: "Activiteit"
     description: "Alleen voor leden van de buurtvereniging"
 
   - id: 8
-    title: "Vrouwenavond"
-    date: "2025-11-15"
-    time: "18:00-24:00"
-    location: ""
-    type: "Activiteit"
-    description: "Alleen voor leden van de buurtvereniging"
-
-  - id: 9
     title: "Halloween"
-    date: "2025-10-25"
+    date: "2026-10-31"
     time: "18:00-21:00"
     location: "Eersel"
     type: "Activiteit"
     description: "Voor leden en buurtbewoners"
 
+  - id: 9
+    title: "Vrouwenavond"
+    date: "2026-11-14"
+    time: "18:00-24:00"
+    location: ""
+    type: "Activiteit"
+    description: "Alleen voor leden van de buurtvereniging"
+
   - id: 10
     title: "Sinterklaas"
-    date: "2025-11-23"
+    date: "2026-11-22"
     time: "14:00-16:30"
     location: ""
     type: "Activiteit"
@@ -80,7 +80,7 @@ events:
 
   - id: 11
     title: "Kerstbomen plaatsen"
-    date: "2025-12-06"
+    date: "2026-12-06"
     time: "10:00-11:00"
     location: ""
     type: "Activiteit"
@@ -88,9 +88,34 @@ events:
 
   - id: 12
     title: "Kerstworkshop"
-    date: "2025-12-09"
+    date: "2026-12-08"
     time: "19:00-23:00"
     location: ""
     type: "Activiteit"
     description: "Alleen voor leden van de buurtvereniging"
+
+  - id: 13
+    title: "Curling bij Winter Village"
+    date: ""
+    time: ""
+    location: ""
+    type: "Activiteit"
+    description: "Alleen voor leden van de buurtvereniging"
+
+  - id: 14
+    title: "Disco schaatsen bij Winter Village"
+    date: ""
+    time: ""
+    location: ""
+    type: "Activiteit"
+    description: "Alleen voor leden van de buurtvereniging"
+
+  - id: 15
+    title: "Pubquiz"
+    date: ""
+    time: ""
+    location: ""
+    type: "Activiteit"
+    description: "Nog te bepalen wanneer. Alleen voor leden van de buurtvereniging"
+
 ---
